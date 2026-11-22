@@ -63,8 +63,8 @@ npm run preview
    (`dist/index.html` kök dizinde olacak şekilde).
 4. **Deploy** düğmesine basın.
 
-`public/_redirects` dosyası derlemeye otomatik kopyalanır; bölüm adreslerinin
-(`/hayat`, `/tip`, `/felsefe` …) doğrudan açılmasını sağlayan SPA kuralı oradadır.
+Bölüm adreslerinin (`/hayat`, `/tip`, `/felsefe` …) doğrudan açılması, `wrangler.jsonc`
+içindeki `assets.not_found_handling: "single-page-application"` ayarıyla sağlanır. Workers Static Assets `/* /index.html 200` kuralını sonsuz döngü sayıp reddettiği için `_redirects` depodan kaldırılmıştır (bkz. Yöntem C).
 
 ### Yöntem B — Git deposu bağlayarak
 
@@ -76,6 +76,15 @@ npm run preview
    - **Build output directory:** `dist`
    - **Node version:** 18 veya üzeri
 4. Deploy edin.
+
+### Yöntem C — Workers Builds (`wrangler deploy`)
+
+Depo doğrudan Cloudflare Workers'a bağlanabilir; kökteki `wrangler.jsonc` derleme
+çıktısını (`dist`) statik varlık olarak yayınlar.
+
+1. Cloudflare'te **Workers & Pages → Create → Workers → Connect to Git** seçin.
+2. **Build command:** `npm run build`, **Deploy command:** `npx wrangler deploy`
+3. Deploy edin. Aynı işi yerelde `npm run deploy` komutu yapar.
 
 ### Alan adı
 
@@ -95,8 +104,8 @@ otomatik oluşturulur; başka bir sağlayıcıdaysa verilen CNAME kaydını ekle
 ├── index.html               # HTML kabuğu, meta etiketleri, font bağlantıları
 ├── package.json
 ├── vite.config.js
+├── wrangler.jsonc           # Workers statik varlık + SPA fallback yapılandırması
 ├── public/
-│   ├── _redirects           # Cloudflare Pages SPA yönlendirmesi
 │   ├── favicon.svg
 │   ├── robots.txt
 │   └── images/              # 8 üretilmiş illüstrasyon (JPEG) + 3 portre (WebP)
