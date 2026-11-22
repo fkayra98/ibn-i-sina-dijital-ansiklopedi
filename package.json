@@ -1,0 +1,20 @@
+{
+  "name": "ibn-i-sina",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "İbn-i Sina'nın hayatı, bilimsel çalışmaları ve mirası üzerine kapsamlı, etkileşimli statik web sitesi.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^5.4.11"
+  }
+}

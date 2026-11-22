@@ -1,0 +1,9 @@
+node_modules/
+*.log
+.DS_Store
+.wrangler/
+.freebuff/
+.cloud-attachments/
+*.zip
+.env
+.env.*
